@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    tools:context=".MainActivity">
+
+        <TextView
+            android:id="@+id/appName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="体調管理"
+            android:layout_marginTop="100dp"
+            android:textSize="40dp" />
+
+        <Button
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:text="本日の体調を登録"
+            android:id="@+id/createButton"
+            android:layout_marginTop="150dp"
+            android:layout_below="@+id/appName"
+            android:textSize="25dp"
+            android:layout_centerHorizontal="true"/>
+
+        <Button
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:text="日別表示"
+            android:id="@+id/viewButton"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/createButton"
+            android:textSize="25dp"
+            android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>

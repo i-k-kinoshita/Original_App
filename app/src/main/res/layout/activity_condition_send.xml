@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    tools:context=".ConditionSendActivity">
+
+    <TextView
+        android:id="@+id/appName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="2020/05/21"
+        android:layout_marginTop="100dp"
+        android:textSize="40dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:id="@+id/temperature"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/appName"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="150dp"
+            android:gravity="center"
+            android:text="体温"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/condition"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/appName"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="150dp"
+            android:gravity="center"
+            android:text="体調"
+            android:textSize="25dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:layout_centerHorizontal="true">
+
+        <Spinner
+            android:id="@+id/temperature_spinner"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/appName"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="150dp"
+            android:gravity="center" />
+
+        <Spinner
+            android:id="@+id/condition_spinner"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/appName"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="150dp"
+            android:gravity="center" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/remark"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/appName"
+        android:layout_marginTop="180dp"
+        android:gravity="center"
+        android:text="備考"
+        android:textSize="25dp" />
+
+    <EditText
+        android:id="@+id/remark_editText"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/remark"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/send_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/remark_editText"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="50dp"
+        android:text="登録" />
+
+</RelativeLayout>
