@@ -17,6 +17,10 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        viewButton.setOnClickListener{
+            val intent = Intent(applicationContext, ReportListActivity::class.java)
+            startActivity(intent)
+        }
 
 
 

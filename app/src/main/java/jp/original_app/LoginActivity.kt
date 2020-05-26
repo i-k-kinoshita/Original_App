@@ -42,20 +42,29 @@ class LoginActivity : AppCompatActivity() {
         }
 
         loginButton.setOnClickListener { v ->
+
+
+            // 消す！！！！
+            val intent = Intent(applicationContext, MainActivity::class.java)
+            startActivity(intent)
+            // ↑ここまで消す！！！
+
+
+
             // キーボードが出てたら閉じる
-            val im = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            im.hideSoftInputFromWindow(v.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
-
-            val email = emailText.text.toString()
-            val password = passwordText.text.toString()
-
-            if (email.length != 0 && password.length >= 6) {
-                login(email, password)
-
-            } else {
-                // エラーを表示する
-                Snackbar.make(v, "正しく入力してください", Snackbar.LENGTH_LONG).show()
-            }
+//            val im = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+//            im.hideSoftInputFromWindow(v.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+//
+//            val email = emailText.text.toString()
+//            val password = passwordText.text.toString()
+//
+//            if (email.isNotEmpty() && password.length >= 6) {
+//                login(email, password)
+//
+//            } else {
+//                // エラーを表示する
+//                Snackbar.make(v, "正しく入力してください", Snackbar.LENGTH_LONG).show()
+//            }
         }
 
         createButton.setOnClickListener {
