@@ -11,7 +11,7 @@
     tools:context=".ConditionSendActivity">
 
     <TextView
-        android:id="@+id/day"
+        android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -27,87 +27,104 @@
         android:layout_centerHorizontal="true">
 
         <TextView
-            android:id="@+id/temperature"
-            android:layout_width="150dp"
+            android:id="@+id/temperature_text"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/day"
+            android:layout_below="@+id/date"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="150dp"
             android:gravity="center"
-            android:text="体温"
+            android:text="体温："
             android:textSize="25dp" />
 
         <TextView
-            android:id="@+id/condition"
-            android:layout_width="150dp"
+            android:id="@+id/temperature"
+            android:layout_width="125dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/day"
+            android:layout_below="@+id/date"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="150dp"
             android:gravity="center"
-            android:text="体調"
+            android:text="36.4℃以上"
             android:textSize="25dp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="130dp"
         android:layout_centerHorizontal="true">
 
-        <Spinner
-            android:id="@+id/temperature_spinner"
-            android:layout_width="150dp"
+        <TextView
+            android:id="@+id/condition_text"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/day"
+            android:layout_below="@+id/date"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="150dp"
-            android:gravity="center" />
+            android:gravity="center"
+            android:text="体調："
+            android:textSize="25dp" />
 
-        <Spinner
-            android:id="@+id/condition_spinner"
-            android:layout_width="150dp"
+        <TextView
+            android:id="@+id/condition"
+            android:layout_width="125dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/day"
+            android:layout_below="@+id/date"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="150dp"
-            android:gravity="center" />
+            android:gravity="center"
+            android:text="良い"
+            android:textSize="25dp" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/remark"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/day"
-        android:layout_marginTop="180dp"
-        android:gravity="center"
-        android:text="備考"
-        android:textSize="25dp" />
-
-    <EditText
-        android:id="@+id/remark_editText"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:layout_below="@+id/remark"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:id="@+id/back_button"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/remark_editText"
-        android:layout_toLeftOf="@+id/send_button"
+        android:layout_marginTop="160dp"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:id="@+id/remark_text"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/date"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="150dp"
+            android:gravity="center"
+            android:text="備考："
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/remark"
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/date"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="150dp"
+            android:gravity="center"
+            android:text=""
+            android:textSize="25dp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/delete_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/edit_button"
+        android:layout_marginTop="370dp"
         android:layout_marginEnd="5dp"
-        android:text="キャンセル" />
+        android:text="削除" />
 
     <Button
-        android:id="@+id/send_button"
+        android:id="@+id/edit_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/remark_editText"
         android:layout_alignParentEnd="true"
+        android:layout_marginTop="370dp"
         android:layout_marginEnd="50dp"
-        android:text="登録" />
+        android:text="編集" />
+
+
 
 </RelativeLayout>

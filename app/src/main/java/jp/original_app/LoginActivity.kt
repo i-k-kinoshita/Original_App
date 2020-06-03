@@ -10,9 +10,18 @@ import android.view.inputmethod.InputMethodManager
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_login.*
-import java.util.HashMap
+import android.app.AlarmManager
+import android.support.v4.content.ContextCompat.getSystemService
+import android.app.PendingIntent
+import java.util.*
+
+
+
+
+
+const val EXTRA_ORIGINAL = "jp.original_app"
+
 
 class LoginActivity : AppCompatActivity() {
 
@@ -43,13 +52,10 @@ class LoginActivity : AppCompatActivity() {
 
         loginButton.setOnClickListener { v ->
 
-
-            // 消す！！！！
+            // ログインスキップ
             val intent = Intent(applicationContext, MainActivity::class.java)
             startActivity(intent)
-            // ↑ここまで消す！！！
-
-
+            // ↑ここまで
 
             // キーボードが出てたら閉じる
 //            val im = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -71,12 +77,39 @@ class LoginActivity : AppCompatActivity() {
             val intent = Intent(applicationContext, CreateAccountActivity::class.java)
             startActivity(intent)
         }
-    }
 
+        // 通知機能
+        // AlarmManagerから通知を受け取るレシーバーを定義する
+        val intent = Intent(applicationContext, AlarmReceiver::class.java)
+        // レシーバーで判断するため 適当でOK
+        intent.putExtra("intent_alarm_id_key", 1000)
+
+        val sender = PendingIntent.getBroadcast(
+            applicationContext, 100, intent,
+            PendingIntent.FLAG_UPDATE_CURRENT
+        )
+
+        // 通知させたい時間をCalendarを使って定義する
+        val calSet = Calendar.getInstance()
+        calSet.timeInMillis = System.currentTimeMillis()
+        calSet.timeZone = TimeZone.getDefault()
+
+        // 毎日17:30に通知を表示させる
+        calSet.set(Calendar.HOUR_OF_DAY, 9)
+        calSet.set(Calendar.MINUTE, 0)
+
+        val alarmManager = applicationContext.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        // AlarmManager.RTC_WAKEUPで端末スリープ時に起動させるようにする
+        // 1回だけ通知の場合はalarmManager.set()を使う
+        alarmManager.setRepeating(
+            AlarmManager.RTC_WAKEUP, calSet.timeInMillis,
+            // 一日毎にアラームを呼び出す
+            AlarmManager.INTERVAL_DAY, sender
+        )
+    }
     // 処理中のダイアログを表示してFirebaseにログインを指示。
     private fun login(email: String, password: String) {
         // ログインする
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(mLoginListener)
     }
-
 }

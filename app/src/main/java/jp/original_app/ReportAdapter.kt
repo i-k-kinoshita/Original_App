@@ -1,10 +1,12 @@
 package jp.original_app
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.ImageView
 import android.widget.TextView
 import java.util.ArrayList
 
@@ -32,13 +34,28 @@ class ReportAdapter(context: Context) : BaseAdapter() {
         }
 
         val dateText = convertView!!.findViewById<View>(R.id.textView1) as TextView
-        dateText.text = mReportArrayList[position].date.toString()
+        dateText.text = mReportArrayList[position].date
 
         val temperatureText = convertView.findViewById<View>(R.id.textView2) as TextView
         temperatureText.text = mReportArrayList[position].temperature
 
-        val conditionText = convertView.findViewById<View>(R.id.textView3) as TextView
-        conditionText.text = mReportArrayList[position].condition
+        val conditionImage = convertView.findViewById<View>(R.id.imageView) as ImageView
+        if(mReportArrayList[position].condition == "良い"){
+            conditionImage.setImageResource(R.drawable.good)
+            convertView.setBackgroundColor(Color.rgb(240, 255, 240));
+
+        }else if(mReportArrayList[position].condition == "普通"){
+            conditionImage.setImageResource(R.drawable.usual)
+            convertView.setBackgroundColor(Color.rgb(255, 255, 240));
+
+        }else if(mReportArrayList[position].condition == "悪い"){
+            conditionImage.setImageResource(R.drawable.bad)
+            convertView.setBackgroundColor(Color.rgb(255, 240, 245));
+
+        }
+
+
+        // ImageViewで体調
 
         return convertView
     }
