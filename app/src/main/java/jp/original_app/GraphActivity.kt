@@ -21,7 +21,6 @@ class GraphActivity : AppCompatActivity() {
     private lateinit var mValues: MutableList<Entry>
     private lateinit var mDate:MutableList<String>
 
-
     // スタイルとフォントファミリーの設定
     private var mTypeface = Typeface.create(Typeface.SANS_SERIF, Typeface.NORMAL)
     // データの個数
@@ -82,8 +81,6 @@ class GraphActivity : AppCompatActivity() {
             setPinchZoom(false)
             setDrawGridBackground(false)
             animateY(2000, Easing.EaseInOutSine)
-
-
 
             //データラベルの表示
             legend.apply {

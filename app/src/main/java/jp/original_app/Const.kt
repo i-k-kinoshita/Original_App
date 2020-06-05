@@ -7,3 +7,5 @@ const val NameKEY = "name"          // Preferenceに表示名を保存する時�
 
 const val FavoritePATH = "favorite"
 const val reportPATH = "report"
+const val roomPATH = "room"
+const val managerPATH = "manager"

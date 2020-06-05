@@ -40,5 +40,13 @@
         app:backgroundTint="@android:color/holo_green_dark"
         app:srcCompat="@drawable/graph" />
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/room"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_margin="@dimen/fab_margin"
+        app:backgroundTint="@android:color/holo_green_dark"
+        app:srcCompat="@drawable/good" />
 
 </android.support.design.widget.CoordinatorLayout>

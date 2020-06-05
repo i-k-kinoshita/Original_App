@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter
 import kotlinx.android.synthetic.main.activity_condition_send.*
 import android.support.design.widget.Snackbar
 import android.view.View
+import android.widget.SpinnerAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import java.util.*
@@ -27,6 +28,7 @@ class ConditionSendActivity : AppCompatActivity() {
         val cntData = sdf2.format(cal.time)
 
 
+
         day.text = date
 
         var temperaturelist = listOf("35.5℃以下","35.6℃","35.7℃","35.8℃","35.9℃","36.0℃"
@@ -45,7 +47,7 @@ class ConditionSendActivity : AppCompatActivity() {
             android.R.layout.simple_spinner_item,
             conditionlist
         )
-        temperature_spinner.adapter = temperatureadapter
+        temperature_spinner.adapter = temperatureadapter as SpinnerAdapter?
         temperature_spinner.setSelection(10)
         condition_spinner.adapter = conditionadapter
         condition_spinner.setSelection(1)

@@ -1,10 +1,8 @@
 package jp.original_app
 
-import android.app.AlarmManager
-import android.app.PendingIntent
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.widget.ListView
 import com.google.firebase.auth.FirebaseAuth
@@ -57,6 +55,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
+        room.setOnClickListener { view ->
+            val intent = Intent(applicationContext, RoomListActivity::class.java)
+            startActivity(intent)
+        }
+
         create.setOnClickListener { view ->
             val intent = Intent(applicationContext, ConditionSendActivity::class.java)
             startActivity(intent)
@@ -77,8 +80,14 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    @SuppressLint("RestrictedApi")
     override fun onResume() {
         super.onResume()
+
+
+//        room.visibility = View.GONE
+
+
 
         val dataBaseReference = FirebaseDatabase.getInstance().reference
         val user = FirebaseAuth.getInstance().currentUser

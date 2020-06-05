@@ -78,6 +78,8 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        // TODO プレファレンス
+
         // 通知機能
         // AlarmManagerから通知を受け取るレシーバーを定義する
         val intent = Intent(applicationContext, AlarmReceiver::class.java)
@@ -94,9 +96,9 @@ class LoginActivity : AppCompatActivity() {
         calSet.timeInMillis = System.currentTimeMillis()
         calSet.timeZone = TimeZone.getDefault()
 
-        // 毎日17:30に通知を表示させる
+        // 毎日9:00に通知を表示させる
         calSet.set(Calendar.HOUR_OF_DAY, 9)
-        calSet.set(Calendar.MINUTE, 0)
+        calSet.set(Calendar.MINUTE,0)
 
         val alarmManager = applicationContext.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         // AlarmManager.RTC_WAKEUPで端末スリープ時に起動させるようにする
@@ -106,6 +108,7 @@ class LoginActivity : AppCompatActivity() {
             // 一日毎にアラームを呼び出す
             AlarmManager.INTERVAL_DAY, sender
         )
+        // ここまで通知機能
     }
     // 処理中のダイアログを表示してFirebaseにログインを指示。
     private fun login(email: String, password: String) {

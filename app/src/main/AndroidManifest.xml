@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="jp.original_app">
 
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
@@ -12,7 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".GraphActivity"></activity>
+        <activity android:name=".RoomListActivity"></activity>
+        <activity android:name=".CreateRoomActivity" />
+        <activity android:name=".LoginRoomActivity" />
+        <activity android:name=".GraphActivity" />
         <activity android:name=".ReportEditActivity" />
         <activity android:name=".ReportDetailActivity" />
         <activity
@@ -29,9 +32,7 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".AlarmReceiver"/>
-
-
+        <receiver android:name=".AlarmReceiver" />
     </application>
 
 </manifest>

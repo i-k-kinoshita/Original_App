@@ -12,6 +12,11 @@ import android.util.Log
 
 class AlarmReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
+
+        Log.d("Kotlintest","receive")
+
+        // TODO データを登録していると以下の処理を飛ばす
+
         val messageId = intent.getIntExtra("intent_alarm_id_key", 0)
 
         val builder = NotificationCompat.Builder(context, "default")
@@ -22,13 +27,13 @@ class AlarmReceiver : BroadcastReceiver() {
         builder.setDefaults(Notification.DEFAULT_ALL)
         builder.setAutoCancel(true)
 
-        // タスクの情報を設定する
+        // 情報を設定する
         builder.setTicker("体調管理アプリ")   // 5.0以降は表示されない
         builder.setContentTitle("体調管理アプリ")
         builder.setSubText("体調管理アプリ")
         builder.setContentText("本日の体調を登録しましょう！")
 
-        // 通知をタップしたらアプリを起動するようにする
+        // 通知をタップしたらアプリを起動する
         val startAppIntent = Intent(context, LoginActivity::class.java)
         startAppIntent.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT)
         val pendingIntent = PendingIntent.getActivity(context, 0, startAppIntent, 0)
@@ -36,6 +41,8 @@ class AlarmReceiver : BroadcastReceiver() {
 
         val manager = context
             .getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+
         manager.notify(100, builder.build())
     }
 }
