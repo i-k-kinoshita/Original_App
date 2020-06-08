@@ -76,9 +76,9 @@ class ReportEditActivity : AppCompatActivity() {
             val view = findViewById<View>(android.R.id.content)
             Snackbar.make(view, "登録が完了しました。", Snackbar.LENGTH_LONG).show()
 
-            val intent = Intent(applicationContext, MainActivity::class.java)
-            startActivity(intent)
+//            val intent = Intent(applicationContext, MainActivity::class.java)
+//            startActivity(intent)
+            finish()
         }
     }
-
 }

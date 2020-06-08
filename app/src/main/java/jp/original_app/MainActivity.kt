@@ -3,7 +3,11 @@ package jp.original_app
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
+import android.util.Base64
+import android.util.Log
+import android.view.View
 import android.widget.ListView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -17,6 +21,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var mListView: ListView
     private lateinit var mReportRef: DatabaseReference
 
+    private var mName = ""
+
     private val mEventListener = object : ChildEventListener {
         override fun onChildAdded(dataSnapshot: DataSnapshot, s: String?) {
             val date = dataSnapshot.key ?: ""
@@ -27,10 +33,9 @@ class MainActivity : AppCompatActivity() {
             val remark = map["remark"] ?: ""
             val orderCnt = map["orderCnt"] ?: "-1"
 
-            val report = Report(date, temperature, condition, remark, orderCnt)
+            val report = Report(date, temperature, condition, remark, orderCnt,mName)
             mReportArrayList.add(report)
             mAdapter.notifyDataSetChanged()
-
         }
 
         override fun onChildChanged(dataSnapshot: DataSnapshot, s: String?) {
@@ -55,6 +60,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
+        val extras = intent.extras
+        mName = extras.get("name") as String
+
         room.setOnClickListener { view ->
             val intent = Intent(applicationContext, RoomListActivity::class.java)
             startActivity(intent)
@@ -77,17 +85,11 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("report", mReportArrayList[position])
             startActivity(intent)
         }
-
     }
 
     @SuppressLint("RestrictedApi")
     override fun onResume() {
         super.onResume()
-
-
-//        room.visibility = View.GONE
-
-
 
         val dataBaseReference = FirebaseDatabase.getInstance().reference
         val user = FirebaseAuth.getInstance().currentUser

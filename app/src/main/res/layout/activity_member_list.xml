@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".MainActivity"
-    tools:showIn="@layout/activity_main">
+    tools:context=".MemberListActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,7 +16,7 @@
             android:layout_height="55dp"
             android:layout_marginLeft="10dp"
             android:gravity="center|center_horizontal"
-            android:text="名前"
+            android:text="日付"
             android:textSize="20dp" />
 
         <TextView

@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RoomListActivity"></activity>
+        <activity android:name=".MemberListActivity"></activity>
+        <activity android:name=".RoomListActivity" />
         <activity android:name=".CreateRoomActivity" />
         <activity android:name=".LoginRoomActivity" />
         <activity android:name=".GraphActivity" />

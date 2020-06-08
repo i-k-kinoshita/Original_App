@@ -3,6 +3,7 @@ package jp.original_app
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.util.Log
 import android.view.View
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -41,6 +42,25 @@ class CreateRoomActivity : AppCompatActivity() , View.OnClickListener {
         }
         override fun onCancelled(firebaseError: DatabaseError) {}
     }
+    private val roomExistenceListener = object : ValueEventListener {
+        override fun onDataChange(snapshot: DataSnapshot) {
+            if(snapshot.value != null) {
+                val view = findViewById<View>(android.R.id.content)
+                Snackbar.make(view, "グループが既に存在します", Snackbar.LENGTH_LONG).show()
+            }else{
+                val data = HashMap<String, String>()
+                val user = FirebaseAuth.getInstance().currentUser
+                data["password"] = mPassword
+                data["manager"] = user!!.uid
+
+                mRoomReference.child(mRoomName).setValue(data)
+                mRoomReference.child(mRoomName).child(UsersPATH).child(user!!.uid).setValue(mData)
+                mUserReference.child(mRoomName).setValue(mData)
+                finish()
+            }
+        }
+        override fun onCancelled(firebaseError: DatabaseError) {}
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,15 +87,7 @@ class CreateRoomActivity : AppCompatActivity() , View.OnClickListener {
 
         if (mRoomName.isNotEmpty() && mPassword.length >= 6) {
             if(v.id == R.id.createRoom){
-                val data = HashMap<String, String>()
-                val user = FirebaseAuth.getInstance().currentUser
-                data["password"] = mPassword
-                data["manager"] = user!!.uid
-
-                mRoomReference.child(mRoomName).setValue(data)
-                mRoomReference.child(mRoomName).child(UsersPATH).child(user!!.uid).setValue(mData)
-                mUserReference.child(mRoomName).setValue(mData)
-                finish()
+                mRoomReference.child(mRoomName).addListenerForSingleValueEvent(roomExistenceListener)
 
             }else if(v.id == R.id.loginRoom){
                 mRoomReference.child(mRoomName).addListenerForSingleValueEvent(roomEventListener)
