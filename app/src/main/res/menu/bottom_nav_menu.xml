@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_list"
+        android:icon="@drawable/ic_list_black_24dp"
+        android:title="一覧" />
+
+    <item
+        android:id="@+id/navigation_graph"
+        android:icon="@drawable/ic_show_chart_black_24dp"
+        android:title="グラフ" />
+    <item
+        android:id="@+id/navigation_plus"
+        android:icon="@drawable/ic_add_box_black_24dp"
+        android:title="追加" />
+
+    <item
+        android:id="@+id/navigation_room"
+        android:icon="@drawable/ic_people_outline_black_24dp"
+        android:title="グループ" />
+
+    <item
+        android:id="@+id/navigation_notice"
+        android:icon="@drawable/ic_notifications_none_black_24dp"
+        android:title="通知" />
+</menu>

@@ -4,8 +4,8 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView1"
-        android:layout_width="180dp"
+        android:id="@+id/reportListDate"
+        android:layout_width="185dp"
         android:layout_height="55dp"
         android:gravity="center|left"
         android:text="Date"
@@ -13,20 +13,25 @@
         android:textSize="20dp" />
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="80dp"
+        android:id="@+id/reportListCondition"
+        android:layout_width="50dp"
         android:layout_height="30dp"
         android:gravity="center"
         android:layout_marginTop="15dp" />
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="100dp"
+        android:id="@+id/reportListTemperature"
+        android:layout_width="85dp"
         android:layout_height="55dp"
         android:gravity="center"
         android:text="Temperature"
         android:textSize="20dp" />
 
-
+    <ImageView
+        android:id="@+id/reportListRemark"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:layout_marginTop="15dp" />
 
 </LinearLayout>

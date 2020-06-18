@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_list">
+
+    <fragment
+        android:id="@+id/navigation_list"
+        android:name="jp.original_app.ui.list.ListFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_list" >
+        <action
+            android:id="@+id/action_navigation_list_to_navigation_detail_report"
+            app:destination="@id/navigation_detail_report" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_detail_report"
+        android:name="jp.original_app.ui.list.ReportDetailFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/report_detail_fragment">
+
+        <argument
+            android:name="report"
+            app:argType="jp.original_app.Report"/>
+        <action
+            android:id="@+id/action_navigation_detail_report_to_navigation_edit_report"
+            app:destination="@id/navigation_edit_report" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_edit_report"
+        android:name="jp.original_app.ui.list.ReportEditFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/report_edit_fragment" >
+
+        <argument
+            android:name="report"
+            app:argType="jp.original_app.Report"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_room"
+        android:name="jp.original_app.ui.room.RoomFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_room" >
+        <action
+            android:id="@+id/action_navigation_room_to_navigation_list_member"
+            app:destination="@id/navigation_list_member" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_list_member"
+        android:name="jp.original_app.ui.room.MemberListFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/member_list_fragment">
+
+        <argument
+            android:name="room"
+            app:argType="jp.original_app.Room"/>
+        <action
+            android:id="@+id/action_navigation_list_member_to_navigation_detail_report"
+            app:destination="@id/navigation_detail_report" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_graph"
+        android:name="jp.original_app.ui.graph.GraphFragment"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_graph" />
+
+    <fragment
+        android:id="@+id/navigation_plus"
+        android:name="jp.original_app.ui.room.RoomFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_room" />
+
+    <fragment
+        android:id="@+id/navigation_notice"
+        android:name="jp.original_app.ui.notice.NoticeFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_notice" />
+
+</navigation>

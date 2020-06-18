@@ -16,7 +16,7 @@
             android:layout_height="55dp"
             android:layout_marginLeft="10dp"
             android:gravity="center|center_horizontal"
-            android:text="日付"
+            android:text="氏名"
             android:textSize="20dp" />
 
         <TextView
