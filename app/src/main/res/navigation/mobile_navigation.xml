@@ -71,7 +71,10 @@
         android:id="@+id/navigation_graph"
         android:name="jp.original_app.ui.graph.GraphFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_graph" />
+        tools:layout="@layout/fragment_graph" >
+
+    </fragment>
+
 
     <fragment
         android:id="@+id/navigation_plus"

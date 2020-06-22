@@ -54,7 +54,6 @@ class ReportEditActivity : AppCompatActivity() {
         back_button.setOnClickListener {
             finish()
         }
-
         send_button.setOnClickListener{
             val temperature = temperature_spinner.selectedItem.toString()
             val condition = condition_spinner.selectedItem.toString()

@@ -14,16 +14,16 @@
 
         <TextView
             android:id="@+id/textView1"
-            android:layout_width="170dp"
+            android:layout_width="185dp"
             android:layout_height="55dp"
             android:layout_marginLeft="10dp"
             android:gravity="center|center_horizontal"
-            android:text="名前"
+            android:text="日付"
             android:textSize="20dp" />
 
         <TextView
             android:id="@+id/textView3"
-            android:layout_width="100dp"
+            android:layout_width="50dp"
             android:layout_height="55dp"
             android:gravity="center|center_horizontal"
             android:text="体調"
@@ -31,10 +31,18 @@
 
         <TextView
             android:id="@+id/textView2"
-            android:layout_width="80dp"
+            android:layout_width="85dp"
             android:layout_height="55dp"
             android:gravity="center|center_horizontal"
             android:text="体温"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="50dp"
+            android:layout_height="55dp"
+            android:gravity="center|center_horizontal"
+            android:text="備考"
             android:textSize="20dp" />
 
     </LinearLayout>

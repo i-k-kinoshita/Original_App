@@ -37,10 +37,23 @@ class GraphActivity : AppCompatActivity() {
         mReportArrayList = extras.get("reportList") as ArrayList<Report>
 
         for(i in 0 until mReportArrayList.size){
-            val date = mReportArrayList[mReportArrayList.size - i - 1].date.substring(5,10)
             val temperate = mReportArrayList[mReportArrayList.size - i - 1].temperature.substring(0,4)
 
-            mDate.add(date)
+            val long5 = mReportArrayList[mReportArrayList.size - i - 1].date.substring(9,10)
+            val long4 = mReportArrayList[mReportArrayList.size - i - 1].date.substring(8,9)
+
+            if(long5 == "日"){
+                val date = mReportArrayList[mReportArrayList.size - i - 1].date.substring(5,10)
+                mDate.add(date)
+            }else{
+                if(long4 == "日"){
+                    val date = mReportArrayList[mReportArrayList.size - i - 1].date.substring(5,9)
+                    mDate.add(date)
+                }else{
+                    val date = mReportArrayList[mReportArrayList.size - i - 1].date.substring(5,11)
+                    mDate.add(date)
+                }
+            }
             mValues.add(Entry(i.toFloat(),temperate.toFloat()))
         }
 

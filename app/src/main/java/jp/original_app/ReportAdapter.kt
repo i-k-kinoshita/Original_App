@@ -33,13 +33,13 @@ class ReportAdapter(context: Context) : BaseAdapter() {
             convertView = mLayoutInflater.inflate(R.layout.list_report, parent, false)
         }
 
-        val dateText = convertView!!.findViewById<View>(R.id.textView1) as TextView
+        val dateText = convertView!!.findViewById<View>(R.id.reportListDate) as TextView
         dateText.text = mReportArrayList[position].date
 
-        val temperatureText = convertView.findViewById<View>(R.id.textView2) as TextView
+        val temperatureText = convertView.findViewById<View>(R.id.reportListTemperature) as TextView
         temperatureText.text = mReportArrayList[position].temperature
 
-        val conditionImage = convertView.findViewById<View>(R.id.imageView) as ImageView
+        val conditionImage = convertView.findViewById<View>(R.id.reportListCondition) as ImageView
         if(mReportArrayList[position].condition == "良い"){
             conditionImage.setImageResource(R.drawable.good)
             convertView.setBackgroundColor(Color.rgb(240, 255, 240));
@@ -54,6 +54,10 @@ class ReportAdapter(context: Context) : BaseAdapter() {
 
         }
 
+        val memoImage = convertView.findViewById<View>(R.id.reportListRemark) as ImageView
+        if(mReportArrayList[position].remark != ""){
+            memoImage.setImageResource(R.drawable.memo)
+        }
 
         // ImageViewで体調
 

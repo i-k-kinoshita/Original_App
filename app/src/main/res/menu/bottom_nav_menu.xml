@@ -12,8 +12,8 @@
         android:title="グラフ" />
     <item
         android:id="@+id/navigation_plus"
-        android:icon="@drawable/ic_add_box_black_24dp"
-        android:title="追加" />
+        android:enabled="false"
+        android:title="" />
 
     <item
         android:id="@+id/navigation_room"

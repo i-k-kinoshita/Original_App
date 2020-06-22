@@ -8,6 +8,7 @@ import kotlinx.android.synthetic.main.activity_condition_send.*
 import android.support.design.widget.Snackbar
 import android.view.View
 import android.widget.SpinnerAdapter
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import java.util.*
@@ -27,7 +28,26 @@ class ConditionSendActivity : AppCompatActivity() {
         val date = sdf.format(cal.time)
         val cntData = sdf2.format(cal.time)
 
-
+//        val date = "2020年6月1日(月)"
+//        val cntData = "200601"
+//        val date = "2020年6月2日(火)"
+//        val cntData = "200602"
+//        val date = "2020年6月3日(水)"
+//        val cntData = "200603"
+//        val date = "2020年6月4日(木)"
+//        val cntData = "200604"
+//        val date = "2020年6月5日(金)"
+//        val cntData = "200605"
+//        val date = "2020年6月6日(土)"
+//        val cntData = "200606"
+//        val date = "2020年6月7日(日)"
+//        val cntData = "200607"
+//        val date = "2020年6月8日(月)"
+//        val cntData = "200608"
+//        val date = "2020年6月9日(火)"
+//        val cntData = "200609"
+//        val date = "2020年6月10日(水)"
+//        val cntData = "200610"
 
         day.text = date
 
@@ -53,8 +73,7 @@ class ConditionSendActivity : AppCompatActivity() {
         condition_spinner.setSelection(1)
 
         back_button.setOnClickListener {
-            val intent = Intent(applicationContext, MainActivity::class.java)
-            startActivity(intent)
+            finish()
         }
 
         send_button.setOnClickListener{
@@ -78,7 +97,7 @@ class ConditionSendActivity : AppCompatActivity() {
             reportReference.setValue(data)
 
             val view = findViewById<View>(android.R.id.content)
-            Snackbar.make(view, "登録が完了しました。", Snackbar.LENGTH_LONG).show()
+            Toast.makeText(applicationContext, "登録が完了しました", Toast.LENGTH_SHORT).show()
             finish()
         }
     }

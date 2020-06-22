@@ -1,27 +1,44 @@
-package jp.original_app
+package jp.original_app.ui.room
 
-import android.app.AlarmManager
-import android.app.PendingIntent
-import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.support.v4.app.Fragment
+import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AlertDialog
-import android.util.Base64
-import android.util.Log
-import android.widget.ArrayAdapter
 import android.widget.ListView
+import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.*
+import com.google.firebase.database.ChildEventListener
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import jp.original_app.*
+import kotlinx.android.synthetic.main.activity_main2.*
 import kotlinx.android.synthetic.main.activity_room_list.*
 
-class RoomListActivity : AppCompatActivity() {
+class RoomFragment : Fragment() {
 
+    private lateinit var roomViewModel: RoomViewModel
     private lateinit var mRoomList: ArrayList<String>
     private lateinit var mAdapter: RoomAdapter
     private lateinit var mMutableMap: MutableMap<Int,ArrayList<String>>
 
     private var mCnt = -1
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        roomViewModel =
+            ViewModelProviders.of(this).get(RoomViewModel::class.java)
+        return inflater.inflate(R.layout.fragment_room, container, false)
+    }
 
     private val roomEventListener = object : ChildEventListener {
         override fun onChildAdded(dataSnapshot: DataSnapshot, s: String?) {
@@ -31,7 +48,7 @@ class RoomListActivity : AppCompatActivity() {
 
             val databaseReference = FirebaseDatabase.getInstance().reference
             val userReference = databaseReference.child(roomPATH).child(roomName).child(UsersPATH)
-            userReference.addChildEventListener(object : ChildEventListener{
+            userReference.addChildEventListener(object : ChildEventListener {
                 val array = ArrayList<String>()
 
                 override fun onChildAdded(dataSnapshot: DataSnapshot, s: String?) {
@@ -63,12 +80,13 @@ class RoomListActivity : AppCompatActivity() {
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_room_list)
 
-        create.setOnClickListener {
-            val intent = Intent(applicationContext, CreateRoomActivity::class.java)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val mActivity = activity as Main2Activity
+        mActivity.createButton.setOnClickListener {
+            val intent = Intent(context, CreateRoomActivity::class.java)
             startActivity(intent)
         }
 
@@ -80,17 +98,16 @@ class RoomListActivity : AppCompatActivity() {
         val roomReference = databaseReference.child(UsersPATH).child(user!!.uid).child(roomPATH)
 
         listView.setOnItemClickListener { parent, view, position, id ->
+            val room = mMutableMap[position]?.let { Room(mRoomList[position], it) }
+            val action = RoomFragmentDirections.actionNavigationRoomToNavigationListMember(room!!)
+            findNavController().navigate(action)
 
-            val intent = Intent(applicationContext, MemberListActivity::class.java)
-            intent.putExtra("member", mMutableMap[position])
-            intent.putExtra("roomName", mRoomList[position])
-            startActivity(intent)
         }
         listView.setOnItemLongClickListener { parent, view, position, id ->
             val roomUserRef = databaseReference.child(roomPATH).child(mRoomList[position]).child(UsersPATH)
 
             // ダイアログを表示する
-            val builder = AlertDialog.Builder(this@RoomListActivity)
+            val builder = AlertDialog.Builder(context!!)
 
             builder.setTitle("削除")
             builder.setMessage(mRoomList[position] + "を退会しますか")
@@ -100,14 +117,13 @@ class RoomListActivity : AppCompatActivity() {
                 roomUserRef.child(user!!.uid).removeValue()
                 val roomName = mRoomList[position]
 
-                val listView = findViewById<ListView>(R.id.listView)
+                val listView = view.findViewById<ListView>(R.id.listView)
                 mCnt = -1
                 mRoomList = arrayListOf<String>()
                 roomReference.addChildEventListener(roomEventListener)
                 mAdapter.setReportArrayList(mRoomList)
                 listView.adapter = mAdapter
-
-                Snackbar.make(listView, roomName + "から退会しました", Snackbar.LENGTH_LONG).show()
+                Toast.makeText(context, roomName + "から退会しました", Toast.LENGTH_SHORT).show();
             }
 
             builder.setNegativeButton("CANCEL", null)
@@ -115,15 +131,16 @@ class RoomListActivity : AppCompatActivity() {
             val dialog = builder.create()
             dialog.show()
 
-
             true
         }
+
+
     }
 
     override fun onResume() {
         super.onResume()
 
-        val listView = findViewById<ListView>(R.id.listView)
+        val listView = view!!.findViewById<ListView>(R.id.listView)
         mRoomList = arrayListOf<String>()
 
         mCnt = -1
@@ -133,12 +150,12 @@ class RoomListActivity : AppCompatActivity() {
         val roomReference = databaseReference.child(UsersPATH).child(user!!.uid).child(roomPATH)
         roomReference.addChildEventListener(roomEventListener)
 
-
         // ArrayAdapterの生成
-        mAdapter = RoomAdapter(this)
+        mAdapter = RoomAdapter(context!!)
         mAdapter.setReportArrayList(mRoomList)
 
         // ListViewに、生成したAdapterを設定
         listView.adapter = mAdapter
+
     }
 }

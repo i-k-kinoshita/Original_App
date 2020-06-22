@@ -30,16 +30,16 @@ class MemberAdapter(context: Context)  : BaseAdapter() {
         var convertView = convertView
 
         if (convertView == null) {
-            convertView = mLayoutInflater.inflate(R.layout.list_report, parent, false)
+            convertView = mLayoutInflater.inflate(R.layout.list_member, parent, false)
         }
 
-        val dateText = convertView!!.findViewById<View>(R.id.textView1) as TextView
-        dateText.text = mReportArrayList[position].date
+        val nameText = convertView!!.findViewById<View>(R.id.memberListDate) as TextView
+        nameText.text = mReportArrayList[position].name
 
-        val temperatureText = convertView.findViewById<View>(R.id.textView2) as TextView
+        val temperatureText = convertView.findViewById<View>(R.id.memberListTemperature) as TextView
         temperatureText.text = mReportArrayList[position].temperature
 
-        val conditionImage = convertView.findViewById<View>(R.id.imageView) as ImageView
+        val conditionImage = convertView.findViewById<View>(R.id.memberListCondition) as ImageView
         if(mReportArrayList[position].condition == "良い"){
             conditionImage.setImageResource(R.drawable.good)
             convertView.setBackgroundColor(Color.rgb(240, 255, 240));
@@ -51,7 +51,11 @@ class MemberAdapter(context: Context)  : BaseAdapter() {
         }else if(mReportArrayList[position].condition == "悪い"){
             conditionImage.setImageResource(R.drawable.bad)
             convertView.setBackgroundColor(Color.rgb(255, 240, 245));
+        }
 
+        val memoImage = convertView.findViewById<View>(R.id.memberListRemark) as ImageView
+        if(mReportArrayList[position].remark != ""){
+            memoImage.setImageResource(R.drawable.memo)
         }
 
 
