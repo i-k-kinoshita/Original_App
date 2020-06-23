@@ -5,9 +5,17 @@
     android:layout_height="match_parent"
     tools:context=".ui.notice.NoticeFragment">
 
-    <TextView
+    <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello" />
+        android:id="@+id/requestListView" />
+
+    <TextView
+        android:id="@+id/noticeText"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="通知はありません"
+        android:textSize="15dp" />
 
 </FrameLayout>

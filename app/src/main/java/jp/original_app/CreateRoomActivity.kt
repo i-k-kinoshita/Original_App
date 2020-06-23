@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_create_room.*
@@ -16,6 +17,7 @@ class CreateRoomActivity : AppCompatActivity() , View.OnClickListener {
 
     private var mPassword = ""
     private var mRoomName = ""
+    private var mUserName = ""
     private lateinit var mData: HashMap<String,String>
     private lateinit var mDatabaseReference: DatabaseReference
     private lateinit var mRoomReference: DatabaseReference
@@ -24,12 +26,21 @@ class CreateRoomActivity : AppCompatActivity() , View.OnClickListener {
     private val roomEventListener = object : ValueEventListener {
         override fun onDataChange(snapshot: DataSnapshot) {
             if(snapshot.value != null) {
+                val roomName = snapshot.key ?: ""
                 val map = snapshot.value as Map<String, String>
                 val password = map["password"] ?: ""
+                val manager = map["manager"] ?: ""
                 if(password == mPassword){
                     val user = FirebaseAuth.getInstance().currentUser
-                    mUserReference.child(mRoomName).setValue(mData)
-                    mRoomReference.child(mRoomName).child(UsersPATH).child(user!!.uid).setValue(mData)
+                    val data = HashMap<String, String>()
+                    data["name"] = mUserName
+                    if(user!!.uid == manager){
+                        mRoomReference.child(mRoomName).child(UsersPATH).child(user!!.uid).setValue(data)
+                        mUserReference.child(roomPATH).child(mRoomName).setValue(data)
+                    }else{
+                        mRoomReference.child(mRoomName).child(requestPATH).child(user!!.uid).setValue(data)
+                        Toast.makeText(applicationContext, roomName + "に申請しました", Toast.LENGTH_SHORT).show()
+                    }
                     finish()
                 }else{
                     val view = findViewById<View>(android.R.id.content)
@@ -55,9 +66,17 @@ class CreateRoomActivity : AppCompatActivity() , View.OnClickListener {
 
                 mRoomReference.child(mRoomName).setValue(data)
                 mRoomReference.child(mRoomName).child(UsersPATH).child(user!!.uid).setValue(mData)
-                mUserReference.child(mRoomName).setValue(mData)
+                mUserReference.child(roomPATH).child(mRoomName).setValue(mData)
+                mUserReference.child(myRoomPATH).child(mRoomName).setValue(mData)
                 finish()
             }
+        }
+        override fun onCancelled(firebaseError: DatabaseError) {}
+    }
+    private val userNameEventListener = object : ValueEventListener {
+        override fun onDataChange(snapshot: DataSnapshot) {
+            val map = snapshot.value as Map<String, String>
+            mUserName = map["name"] ?: ""
         }
         override fun onCancelled(firebaseError: DatabaseError) {}
     }
@@ -69,7 +88,8 @@ class CreateRoomActivity : AppCompatActivity() , View.OnClickListener {
         val user = FirebaseAuth.getInstance().currentUser
         mDatabaseReference = FirebaseDatabase.getInstance().reference
         mRoomReference = mDatabaseReference.child(roomPATH)
-        mUserReference = mDatabaseReference.child(UsersPATH).child(user!!.uid).child(roomPATH)
+        mUserReference = mDatabaseReference.child(UsersPATH).child(user!!.uid)
+        mUserReference.addListenerForSingleValueEvent(userNameEventListener)
         mData = HashMap<String, String>()
 
         createRoom.setOnClickListener(this)

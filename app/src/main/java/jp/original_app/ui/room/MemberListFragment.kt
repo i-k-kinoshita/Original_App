@@ -82,8 +82,6 @@ class MemberListFragment : Fragment() {
                         mAdapter.notifyDataSetChanged()
                     }else{
                         // データなし
-
-
                     }
                 }
                 override fun onCancelled(firebaseError: DatabaseError) {}

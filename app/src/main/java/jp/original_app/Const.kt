@@ -9,3 +9,7 @@ const val FavoritePATH = "favorite"
 const val reportPATH = "report"
 const val roomPATH = "room"
 const val managerPATH = "manager"
+const val requestPATH = "requestUser"
+const val myRoomPATH = "MyRoom"
+
+

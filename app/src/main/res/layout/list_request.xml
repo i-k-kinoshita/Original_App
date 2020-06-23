@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:text="UserName"
+        android:textSize="20dp"
+        android:layout_marginStart="10dp"
+        android:id="@+id/requestUserName"
+        android:inputType="textMultiLine"/>
+
+    <TextView
+        android:id="@+id/requestRoomName"
+        android:layout_width="210dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/requestUserName"
+        android:text="RoomName"
+        android:layout_marginStart="20dp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textSize="15dp" />
+
+    <Button
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/requestButton"
+        android:text="承認"
+        android:layout_toEndOf="@+id/requestUserName"/>
+
+    <Button
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/deleteButton"
+        android:text="拒否"
+        android:layout_toEndOf="@+id/requestButton"/>
+
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:id="@+id/requestText"
+        android:textSize="20dp"
+        android:layout_toEndOf="@+id/requestUserName"
+        android:gravity="bottom|center_horizontal"
+        android:text="拒否しました" />
+
+</RelativeLayout>

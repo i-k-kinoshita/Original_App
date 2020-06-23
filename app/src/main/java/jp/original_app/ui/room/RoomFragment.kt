@@ -9,6 +9,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AlertDialog
+import android.view.View.GONE
 import android.widget.ListView
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
@@ -20,6 +21,7 @@ import com.google.firebase.database.FirebaseDatabase
 import jp.original_app.*
 import kotlinx.android.synthetic.main.activity_main2.*
 import kotlinx.android.synthetic.main.activity_room_list.*
+import kotlinx.android.synthetic.main.fragment_room.*
 
 class RoomFragment : Fragment() {
 
@@ -59,6 +61,7 @@ class RoomFragment : Fragment() {
                     }
                     array.add(userID)
                     mMutableMap[mCnt] = array
+                    roomText.visibility = GONE
                 }
                 override fun onChildChanged(dataSnapshot: DataSnapshot, s: String?) {
                 }
@@ -96,14 +99,15 @@ class RoomFragment : Fragment() {
         val user = FirebaseAuth.getInstance().currentUser
         val databaseReference = FirebaseDatabase.getInstance().reference
         val roomReference = databaseReference.child(UsersPATH).child(user!!.uid).child(roomPATH)
+        val userReference = databaseReference.child(roomPATH)
 
-        listView.setOnItemClickListener { parent, view, position, id ->
+        roomListView.setOnItemClickListener { parent, view, position, id ->
             val room = mMutableMap[position]?.let { Room(mRoomList[position], it) }
             val action = RoomFragmentDirections.actionNavigationRoomToNavigationListMember(room!!)
             findNavController().navigate(action)
 
         }
-        listView.setOnItemLongClickListener { parent, view, position, id ->
+        roomListView.setOnItemLongClickListener { parent, view, position, id ->
             val roomUserRef = databaseReference.child(roomPATH).child(mRoomList[position]).child(UsersPATH)
 
             // ダイアログを表示する
@@ -115,15 +119,15 @@ class RoomFragment : Fragment() {
             builder.setPositiveButton("OK"){_, _ ->
                 roomReference.child(mRoomList[position]).removeValue()
                 roomUserRef.child(user!!.uid).removeValue()
-                val roomName = mRoomList[position]
+                userReference.child(mRoomList[position]).child(UsersPATH).child(user!!.uid).removeValue()
 
-                val listView = view.findViewById<ListView>(R.id.listView)
+                val roomName = mRoomList[position]
                 mCnt = -1
                 mRoomList = arrayListOf<String>()
                 roomReference.addChildEventListener(roomEventListener)
                 mAdapter.setReportArrayList(mRoomList)
-                listView.adapter = mAdapter
-                Toast.makeText(context, roomName + "から退会しました", Toast.LENGTH_SHORT).show();
+                roomListView.adapter = mAdapter
+                Toast.makeText(context, roomName + "から退会しました", Toast.LENGTH_SHORT).show()
             }
 
             builder.setNegativeButton("CANCEL", null)
@@ -133,14 +137,12 @@ class RoomFragment : Fragment() {
 
             true
         }
-
-
     }
 
     override fun onResume() {
         super.onResume()
 
-        val listView = view!!.findViewById<ListView>(R.id.listView)
+        val listView = view!!.findViewById<ListView>(R.id.roomListView)
         mRoomList = arrayListOf<String>()
 
         mCnt = -1
@@ -156,6 +158,5 @@ class RoomFragment : Fragment() {
 
         // ListViewに、生成したAdapterを設定
         listView.adapter = mAdapter
-
     }
 }

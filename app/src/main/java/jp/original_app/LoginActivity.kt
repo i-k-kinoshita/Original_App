@@ -54,24 +54,24 @@ class LoginActivity : AppCompatActivity() {
         loginButton.setOnClickListener { v ->
 
             // ログインスキップ
-            val intent = Intent(applicationContext, Main2Activity::class.java)
-            startActivity(intent)
+//            val intent = Intent(applicationContext, Main2Activity::class.java)
+//            startActivity(intent)
             // ↑ここまで
 
             // キーボードが出てたら閉じる
-//            val im = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-//            im.hideSoftInputFromWindow(v.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
-//
-//            val email = emailText.text.toString()
-//            val password = passwordText.text.toString()
-//
-//            if (email.isNotEmpty() && password.length >= 6) {
-//                login(email, password)
-//
-//            } else {
-//                // エラーを表示する
-//                Snackbar.make(v, "正しく入力してください", Snackbar.LENGTH_LONG).show()
-//            }
+            val im = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            im.hideSoftInputFromWindow(v.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+
+            val email = emailText.text.toString()
+            val password = passwordText.text.toString()
+
+            if (email.isNotEmpty() && password.length >= 6) {
+                login(email, password)
+
+            } else {
+                // エラーを表示する
+                Snackbar.make(v, "正しく入力してください", Snackbar.LENGTH_LONG).show()
+            }
         }
 
         createButton.setOnClickListener {
