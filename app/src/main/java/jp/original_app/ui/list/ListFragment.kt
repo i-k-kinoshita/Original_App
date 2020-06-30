@@ -21,7 +21,6 @@ import jp.original_app.*
 import jp.original_app.R
 import kotlinx.android.synthetic.main.activity_main2.*
 
-
 class ListFragment : Fragment() {
 
     private lateinit var listViewModel: ListViewModel
@@ -62,7 +61,6 @@ class ListFragment : Fragment() {
         }
         override fun onCancelled(firebaseError: DatabaseError) {}
     }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -72,7 +70,6 @@ class ListFragment : Fragment() {
             ViewModelProviders.of(this).get(ListViewModel::class.java)
         return inflater.inflate(R.layout.fragment_list, container, false)
     }
-
     @SuppressLint("RestrictedApi")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -84,17 +81,13 @@ class ListFragment : Fragment() {
         }
 
         mListView = view!!.findViewById(R.id.listView)
-
         mListView.setOnItemClickListener { parent, view, position, id ->
-
             val report = mReportArrayList[position]
 
             // 生成されたクラスに引数を渡して遷移
             val action = ListFragmentDirections.actionNavigationListToNavigationDetailReport(report)
             findNavController().navigate(action)
-
         }
-
     }
     override fun onResume() {
         super.onResume()

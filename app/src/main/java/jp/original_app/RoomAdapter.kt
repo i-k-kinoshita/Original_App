@@ -35,26 +35,12 @@ class RoomAdapter(context: Context) : BaseAdapter() {
         if (convertView == null) {
             convertView = mLayoutInflater.inflate(R.layout.list_room, parent, false)
         }
-
         val roomText = convertView!!.findViewById<View>(R.id.roomListName) as TextView
         roomText.text = mRoomArrayList[position]
-
-//        val button = convertView.findViewById<View>(R.id.roomRequestButton)
-//        button.setOnClickListener {
-//            Log.d("Kotlintest","${mRoomArrayList[position]}")
-
-
-//            val intent = Intent(this@RoomListActivity, RequestActivity::class.java)
-//            startActivity(intent)
-
-
-
-//        }
 
         return convertView
     }
     fun setReportArrayList(roomArrayList: ArrayList<String>) {
         mRoomArrayList = roomArrayList
     }
-
 }

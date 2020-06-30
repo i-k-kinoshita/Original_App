@@ -1,23 +1,19 @@
 package jp.original_app
 
-import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import kotlinx.android.synthetic.main.activity_report_edit.*
 import android.support.design.widget.Snackbar
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import java.util.*
-import java.text.SimpleDateFormat
 
 class ReportEditActivity : AppCompatActivity() {
 
     private lateinit var mReport: Report
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,7 +58,6 @@ class ReportEditActivity : AppCompatActivity() {
             val user = FirebaseAuth.getInstance().currentUser
             val databaseReference = FirebaseDatabase.getInstance().reference
             val reportReference = databaseReference.child(UsersPATH).child(user!!.uid).child(reportPATH).child(mReport.date)
-
             val data = HashMap<String, String>()
 
             data["temperature"] = temperature
@@ -74,9 +69,6 @@ class ReportEditActivity : AppCompatActivity() {
 
             val view = findViewById<View>(android.R.id.content)
             Snackbar.make(view, "登録が完了しました。", Snackbar.LENGTH_LONG).show()
-
-//            val intent = Intent(applicationContext, MainActivity::class.java)
-//            startActivity(intent)
             finish()
         }
     }

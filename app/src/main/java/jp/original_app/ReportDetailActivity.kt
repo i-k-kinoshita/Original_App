@@ -2,12 +2,9 @@ package jp.original_app
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.opengl.Visibility
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
-import android.util.Log
-import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import com.google.firebase.auth.FirebaseAuth
@@ -65,9 +62,7 @@ class ReportDetailActivity : AppCompatActivity() {
                 mReportRef.removeValue()
                 finish()
             }
-
             builder.setNegativeButton("CANCEL", null)
-
             val dialog = builder.create()
             dialog.show()
 
@@ -84,7 +79,6 @@ class ReportDetailActivity : AppCompatActivity() {
 
         val userRef = dataBaseReference.child(UsersPATH).child(user!!.uid)
         userRef.addListenerForSingleValueEvent(postListener)
-
     }
 
     override fun onResume() {
@@ -92,13 +86,9 @@ class ReportDetailActivity : AppCompatActivity() {
 
         val extras = intent.extras
         mReport = extras.get("report") as Report
-
         val user = FirebaseAuth.getInstance().currentUser
         val dataBaseReference = FirebaseDatabase.getInstance().reference
         mReportRef = dataBaseReference.child(UsersPATH).child(mReport.userUid).child(reportPATH).child(mReport.date)
-
         mReportRef.addListenerForSingleValueEvent(reportListener)
-
-
     }
 }

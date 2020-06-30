@@ -38,7 +38,6 @@ class MemberListFragment : Fragment() {
     private var mRoomName = ""
     private var mManagerUid = ""
 
-
     companion object {
         fun newInstance() = MemberListFragment()
     }
@@ -102,8 +101,6 @@ class MemberListFragment : Fragment() {
         override fun onCancelled(databaseError: DatabaseError) {
         }
     }
-
-
 
     @SuppressLint("RestrictedApi")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -193,5 +190,4 @@ class MemberListFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(MemberListViewModel::class.java)
         // Use the ViewModel
     }
-
 }

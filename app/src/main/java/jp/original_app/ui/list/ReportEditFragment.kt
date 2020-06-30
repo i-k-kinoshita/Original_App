@@ -2,7 +2,6 @@ package jp.original_app.ui.list
 
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,11 +9,9 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import android.widget.Toast
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
-
 import jp.original_app.R
 import jp.original_app.Report
 import jp.original_app.UsersPATH
@@ -25,7 +22,6 @@ import java.util.HashMap
 class ReportEditFragment : Fragment() {
     private val args: ReportEditFragmentArgs by navArgs()
     private lateinit var mReport: Report
-
 
     companion object {
         fun newInstance() = ReportEditFragment()
@@ -66,26 +62,21 @@ class ReportEditFragment : Fragment() {
         condition_spinner.adapter = conditionAdapter
         condition_spinner.setSelection(1)
 
-
         mReport = args.report
 
         day.text = mReport.date
         remark_editText.setText(mReport.remark, TextView.BufferType.NORMAL)
 
         back_button.setOnClickListener {
-//            findNavController().navigate(R.id.navigation_detail_report)
-
             fragmentManager!!.popBackStack()
         }
         send_button.setOnClickListener{
             val temperature = temperature_spinner.selectedItem.toString()
             val condition = condition_spinner.selectedItem.toString()
             val remark = remark_editText.text.toString()
-
             val user = FirebaseAuth.getInstance().currentUser
             val databaseReference = FirebaseDatabase.getInstance().reference
             val reportReference = databaseReference.child(UsersPATH).child(user!!.uid).child(reportPATH).child(mReport.date)
-
             val data = HashMap<String, String>()
 
             data["temperature"] = temperature
@@ -94,16 +85,12 @@ class ReportEditFragment : Fragment() {
             data["orderCnt"] = mReport.cnt
 
             reportReference.setValue(data)
-
             Toast.makeText(context, "登録が完了しました", Toast.LENGTH_SHORT).show()
-//            finish()
             fragmentManager!!.popBackStack()
         }
-
     }
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(ReportEditViewModel::class.java)
-        // Use the ViewModel
     }
 }

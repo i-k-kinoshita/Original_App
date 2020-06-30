@@ -70,28 +70,20 @@ class ReportDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         val user = FirebaseAuth.getInstance().currentUser
         val dataBaseReference = FirebaseDatabase.getInstance().reference
-
 
         delete_button.setOnClickListener {
             // ダイアログを表示する
             val builder = AlertDialog.Builder(context!!)
-
             builder.setTitle("削除")
             builder.setMessage(mReport.date + "を削除しますか")
-
             builder.setPositiveButton("OK"){_, _ ->
                 mReportRef.removeValue()
-//                finish()
                 findNavController().navigate(R.id.navigation_list)
                 Toast.makeText(context,mReport.date + "を削除しました", Toast.LENGTH_SHORT).show();
-
             }
-
             builder.setNegativeButton("CANCEL", null)
-
             val dialog = builder.create()
             dialog.show()
 
@@ -107,14 +99,11 @@ class ReportDetailFragment : Fragment() {
 
         val userRef = dataBaseReference.child(UsersPATH).child(user!!.uid)
         userRef.addListenerForSingleValueEvent(postListener)
-
     }
 
     override fun onResume() {
         super.onResume()
-
         mReport = args.report
-
         val user = FirebaseAuth.getInstance().currentUser
         val dataBaseReference = FirebaseDatabase.getInstance().reference
         mReportRef = dataBaseReference.child(UsersPATH).child(mReport.userUid).child(reportPATH).child(mReport.date)
@@ -124,6 +113,5 @@ class ReportDetailFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(ReportDetailViewModel::class.java)
-        //Use the ViewModel
     }
 }

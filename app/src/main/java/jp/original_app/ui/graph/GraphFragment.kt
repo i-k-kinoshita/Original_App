@@ -132,11 +132,6 @@ class GraphFragment : Fragment() {
         val reportRef = dataBaseReference.child(UsersPATH).child(user!!.uid)
         reportRef.addListenerForSingleValueEvent(mEventListener)
 
-        // 時間を開ける,Sleepさせる
-//        Log.d("Kotlintest","Start")
-//        Thread.sleep(1_000)
-//        Log.d("Kotlintest","Stop")
-
     }
     // LineChart用のデータ作成
     private fun lineData(count: Int): LineData {

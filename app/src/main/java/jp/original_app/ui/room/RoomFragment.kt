@@ -30,10 +30,8 @@ class RoomFragment : Fragment() {
     private lateinit var mRoomList: ArrayList<String>
     private lateinit var mAdapter: RoomAdapter
     private lateinit var mMutableMap: MutableMap<Int,ArrayList<String>>
-
     private var mCnt = -1
     private var mHandler = Handler()
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -95,7 +93,6 @@ class RoomFragment : Fragment() {
             val intent = Intent(context, CreateRoomActivity::class.java)
             startActivity(intent)
         }
-
         mRoomList = arrayListOf<String>()
         mMutableMap = mutableMapOf<Int,ArrayList<String>>()
 

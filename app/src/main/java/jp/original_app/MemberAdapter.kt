@@ -42,24 +42,18 @@ class MemberAdapter(context: Context)  : BaseAdapter() {
         val conditionImage = convertView.findViewById<View>(R.id.memberListCondition) as ImageView
         if(mReportArrayList[position].condition == "良い"){
             conditionImage.setImageResource(R.drawable.good)
-            convertView.setBackgroundColor(Color.rgb(240, 255, 240));
-
+            convertView.setBackgroundColor(Color.rgb(240, 255, 240))
         }else if(mReportArrayList[position].condition == "普通"){
             conditionImage.setImageResource(R.drawable.usual)
-            convertView.setBackgroundColor(Color.rgb(255, 255, 240));
-
+            convertView.setBackgroundColor(Color.rgb(255, 255, 240))
         }else if(mReportArrayList[position].condition == "悪い"){
             conditionImage.setImageResource(R.drawable.bad)
-            convertView.setBackgroundColor(Color.rgb(255, 240, 245));
+            convertView.setBackgroundColor(Color.rgb(255, 240, 245))
         }
-
         val memoImage = convertView.findViewById<View>(R.id.memberListRemark) as ImageView
         if(mReportArrayList[position].remark != ""){
             memoImage.setImageResource(R.drawable.memo)
         }
-
-
-        // ImageViewで体調
 
         return convertView
     }

@@ -17,11 +17,9 @@ class ReportAdapter(context: Context) : BaseAdapter() {
     override fun getItem(position: Int): Any {
         return mReportArrayList[position]
     }
-
     override fun getItemId(position: Int): Long {
         return position.toLong()
     }
-
     override fun getCount(): Int {
         return mReportArrayList.size
     }
@@ -51,16 +49,11 @@ class ReportAdapter(context: Context) : BaseAdapter() {
         }else if(mReportArrayList[position].condition == "悪い"){
             conditionImage.setImageResource(R.drawable.bad)
             convertView.setBackgroundColor(Color.rgb(255, 250, 255));
-
         }
-
         val memoImage = convertView.findViewById<View>(R.id.reportListRemark) as ImageView
         if(mReportArrayList[position].remark != ""){
             memoImage.setImageResource(R.drawable.memo)
         }
-
-        // ImageViewで体調
-
         return convertView
     }
     fun setReportArrayList(reportArrayList: ArrayList<Report>) {

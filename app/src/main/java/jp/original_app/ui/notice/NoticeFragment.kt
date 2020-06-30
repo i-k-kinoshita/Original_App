@@ -1,24 +1,19 @@
 package jp.original_app.ui.notice
 
-import android.annotation.SuppressLint
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.*
 import android.view.ViewGroup
 import android.widget.ListView
-import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import jp.original_app.*
 import jp.original_app.R
-
 import kotlinx.android.synthetic.main.activity_main2.*
 import kotlinx.android.synthetic.main.fragment_notice.*
 
@@ -27,7 +22,6 @@ class NoticeFragment : Fragment() {
     companion object {
         fun newInstance() = NoticeFragment()
     }
-
     private lateinit var viewModel: NoticeViewModel
     private lateinit var mAdapter: RequestAdapter
     private lateinit var mListView: ListView
@@ -46,7 +40,6 @@ class NoticeFragment : Fragment() {
         override fun onChildAdded(dataSnapshot: DataSnapshot, s: String?) {
             if(dataSnapshot.value != null){
                 val roomName = dataSnapshot.key ?: ""
-
                 val databaseReference = FirebaseDatabase.getInstance().reference
                 val userReference = databaseReference.child(roomPATH).child(roomName).child(requestPATH)
                 userReference.addChildEventListener(object : ChildEventListener {
@@ -62,7 +55,6 @@ class NoticeFragment : Fragment() {
                             mHandler.post{
                                 noticeText.visibility = GONE
                             }
-                        }else{
                         }
                     }
                     override fun onChildChanged(dataSnapshot: DataSnapshot, s: String?) {
@@ -74,7 +66,6 @@ class NoticeFragment : Fragment() {
                     override fun onCancelled(databaseError: DatabaseError) {
                     }
                 })
-            }else{
             }
         }
         override fun onChildChanged(dataSnapshot: DataSnapshot, s: String?) {
@@ -104,17 +95,13 @@ class NoticeFragment : Fragment() {
         super.onResume()
 
         noticeText.visibility = VISIBLE
-
         val dataBaseReference = FirebaseDatabase.getInstance().reference
         val user = FirebaseAuth.getInstance().currentUser
         mUserReference = dataBaseReference.child(UsersPATH).child(user!!.uid).child(myRoomPATH)
         mUserReference.addChildEventListener(mEventListener)
     }
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(NoticeViewModel::class.java)
-        // Use the ViewModel
     }
-
 }
