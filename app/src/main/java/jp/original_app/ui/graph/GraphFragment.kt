@@ -10,7 +10,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Handler
-import android.support.v4.app.ListFragment
 import android.util.Log
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.components.Legend
@@ -24,10 +23,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import jp.original_app.*
 import jp.original_app.R
-import kotlinx.android.synthetic.main.activity_graph.*
-import kotlinx.android.synthetic.main.activity_graph.lineChart
+import kotlinx.android.synthetic.main.fragment_graph.lineChart
 import kotlinx.android.synthetic.main.activity_main2.*
-import kotlinx.android.synthetic.main.fragment_graph.*
 
 class GraphFragment : Fragment() {
 
@@ -147,19 +144,20 @@ class GraphFragment : Fragment() {
         // グラフのレイアウトの設定
         val yVals = LineDataSet(mValues, "体温").apply {
             axisDependency =  YAxis.AxisDependency.LEFT //”体温”の表示する位置
-            color = Color.RED // グラフの線の色
+            color = Color.rgb(255,187,51) // グラフの線の色
+
             highLightColor = Color.YELLOW  // タップ時のハイライトカラー
             setDrawCircles(true) // 点を○で表示
             // setDrawFilled(true) // 領域塗り潰し
             setDrawCircleHole(true) // ○塗り潰し
+            setCircleColor(Color.rgb(237,126,0))
             // 点の値非表示
             setDrawValues(true) // 点に値を表示
             // 線の太さ
             lineWidth = 4f
         }
-        val data = LineData(yVals)
 
-        return data
+        return LineData(yVals)
     }
     private fun setupLineChart(){
         lineChart.apply {

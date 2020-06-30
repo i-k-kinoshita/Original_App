@@ -14,17 +14,11 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".Main2Activity"
-            android:label="@string/title_activity_main2"></activity>
-        <activity android:name=".MemberListActivity" />
-        <activity android:name=".RoomListActivity" />
+            android:label="@string/title_activity_main2"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".CreateRoomActivity" />
-        <activity android:name=".GraphActivity" />
         <activity android:name=".ReportEditActivity" />
         <activity android:name=".ReportDetailActivity" />
-        <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".CreateAccountActivity" />
         <activity android:name=".ConditionSendActivity" />
         <activity android:name=".LoginActivity">

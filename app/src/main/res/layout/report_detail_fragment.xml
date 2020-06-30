@@ -17,112 +17,112 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:text=""
-        android:layout_marginTop="100dp"
-        android:textSize="30dp" />
+        android:layout_marginTop="70dp"
+        android:textSize="25dp" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true">
 
         <TextView
             android:id="@+id/temperature_text"
-            android:layout_width="80dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/date"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="150dp"
             android:gravity="center"
             android:text="体温："
-            android:textSize="25dp" />
+            android:textSize="20dp" />
 
         <TextView
             android:id="@+id/temperature"
-            android:layout_width="125dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/date"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="150dp"
             android:gravity="center"
             android:text=""
-            android:textSize="25dp" />
+            android:textSize="20dp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="65dp"
         android:layout_centerHorizontal="true">
 
         <TextView
             android:id="@+id/condition_text"
-            android:layout_width="80dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/date"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="150dp"
             android:gravity="center"
             android:text="体調："
-            android:textSize="25dp" />
+            android:textSize="20dp" />
 
         <TextView
             android:id="@+id/condition"
-            android:layout_width="125dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/date"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="150dp"
             android:gravity="center"
             android:text=""
-            android:textSize="25dp" />
+            android:textSize="20dp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="130dp"
+        android:id="@+id/remarkDetailLayout"
+        android:layout_marginTop="110dp"
         android:layout_centerHorizontal="true">
 
         <TextView
             android:id="@+id/remark_text"
-            android:layout_width="80dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/date"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="150dp"
             android:gravity="center"
             android:text="備考："
-            android:textSize="25dp" />
+            android:textSize="20dp" />
 
         <TextView
             android:id="@+id/remark"
-            android:layout_width="125dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/date"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="150dp"
             android:gravity="center"
             android:text=""
-            android:textSize="25dp" />
+            android:textSize="20dp" />
     </LinearLayout>
 
     <Button
-        android:id="@+id/delete_button"
-        android:layout_width="wrap_content"
+        android:id="@+id/edit_button"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_toLeftOf="@+id/edit_button"
-        android:layout_marginTop="360dp"
-        android:layout_marginEnd="5dp"
-        android:text="削除" />
+        android:layout_below="@+id/remarkDetailLayout"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:text="編集" />
 
     <Button
-        android:id="@+id/edit_button"
-        android:layout_width="wrap_content"
+        android:id="@+id/delete_button"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="360dp"
-        android:layout_marginEnd="50dp"
-        android:text="編集" />
+        android:layout_below="@+id/edit_button"
+        android:layout_centerHorizontal="true"
+        android:text="削除" />
 
 </RelativeLayout>

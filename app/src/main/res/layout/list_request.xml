@@ -1,48 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <TextView
-        android:layout_width="220dp"
-        android:layout_height="wrap_content"
-        android:text="UserName"
-        android:textSize="20dp"
-        android:layout_marginStart="10dp"
         android:id="@+id/requestUserName"
-        android:inputType="textMultiLine"/>
+        android:layout_width="220dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:gravity="center_vertical"
+        android:inputType="textMultiLine"
+        android:text="UserName"
+        android:textSize="20dp" />
 
     <TextView
         android:id="@+id/requestRoomName"
         android:layout_width="210dp"
-        android:layout_height="wrap_content"
+        android:layout_height="20dp"
         android:layout_below="@+id/requestUserName"
+        android:layout_marginStart="25dp"
+        android:gravity="fill_horizontal"
         android:text="RoomName"
-        android:layout_marginStart="20dp"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textSize="15dp" />
+        android:textSize="13dp" />
 
     <Button
-        android:layout_width="80dp"
-        android:layout_height="wrap_content"
         android:id="@+id/requestButton"
-        android:text="承認"
-        android:layout_toEndOf="@+id/requestUserName"/>
+        android:layout_width="70dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_toStartOf="@+id/deleteButton"
+        android:background="@drawable/requestbutton"
+        android:text="承認" />
 
     <Button
-        android:layout_width="70dp"
-        android:layout_height="wrap_content"
         android:id="@+id/deleteButton"
-        android:text="拒否"
-        android:layout_toEndOf="@+id/requestButton"/>
+        android:layout_width="70dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="4dp"
+        android:layout_alignParentEnd="true"
+        android:text="拒否" />
 
     <TextView
-        android:layout_width="150dp"
-        android:layout_height="50dp"
         android:id="@+id/requestText"
-        android:textSize="20dp"
-        android:layout_toEndOf="@+id/requestUserName"
-        android:gravity="bottom|center_horizontal"
-        android:text="拒否しました" />
+        android:layout_width="123dp"
+        android:layout_height="35dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="25dp"
+        android:text="拒否しました"
+        android:textSize="15dp" />
 
 </RelativeLayout>

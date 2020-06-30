@@ -79,7 +79,6 @@ class RequestAdapter (context: Context) :BaseAdapter() {
             requestRef.child(requestPATH).child(mRequestArrayList[position].userUid).removeValue()
         }
 
-
         return convertView
     }
     fun setRequestArrayList(requestArrayList: ArrayList<Request>) {

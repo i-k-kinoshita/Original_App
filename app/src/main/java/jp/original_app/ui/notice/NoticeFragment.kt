@@ -10,7 +10,7 @@ import android.support.v4.app.Fragment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.GONE
+import android.view.View.*
 import android.view.ViewGroup
 import android.widget.ListView
 import android.widget.Toast
@@ -34,7 +34,6 @@ class NoticeFragment : Fragment() {
     private lateinit var mUserReference: DatabaseReference
     private lateinit var mRequestList: ArrayList<Request>
     private var mHandler = Handler()
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,7 +59,9 @@ class NoticeFragment : Fragment() {
                             mRequestList.add(request)
                             mAdapter.setRequestArrayList(mRequestList)
                             mListView.adapter = mAdapter
-                            noticeText.visibility = GONE
+                            mHandler.post{
+                                noticeText.visibility = GONE
+                            }
                         }else{
                         }
                     }
@@ -97,18 +98,18 @@ class NoticeFragment : Fragment() {
         mListView = view!!.findViewById(R.id.requestListView)
         mAdapter = RequestAdapter(context!!)
         mRequestList = ArrayList<Request>()
-
     }
 
     override fun onResume() {
         super.onResume()
+
+        noticeText.visibility = VISIBLE
 
         val dataBaseReference = FirebaseDatabase.getInstance().reference
         val user = FirebaseAuth.getInstance().currentUser
         mUserReference = dataBaseReference.child(UsersPATH).child(user!!.uid).child(myRoomPATH)
         mUserReference.addChildEventListener(mEventListener)
     }
-
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

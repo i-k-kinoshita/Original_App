@@ -59,8 +59,13 @@ class MemberListFragment : Fragment() {
 
             // 現在時刻の取得
             val cal = Calendar.getInstance()
-            val sdf = SimpleDateFormat("yyyy年M月dd日(E)")
-            val date = sdf.format(cal.time)
+//            val sdf = SimpleDateFormat("yyyy年M月dd日(E)")
+//            val date = sdf.format(cal.time)
+
+
+            val date = "2020年6月25日(木)"
+
+
 
             val key = snapshot.key ?: ""
             val databaseReference = FirebaseDatabase.getInstance().reference

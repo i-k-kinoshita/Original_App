@@ -51,8 +51,6 @@ class CreateAccountActivity : AppCompatActivity() {
                 userRef.setValue(data)
 
 
-
-
                 // 通知機能
                 // AlarmManagerから通知を受け取るレシーバーを定義する
                 // 実行したいクラスから Intent を作成
@@ -115,6 +113,9 @@ class CreateAccountActivity : AppCompatActivity() {
                 // エラーを表示する
                 Snackbar.make(v, "正しく入力してください", Snackbar.LENGTH_LONG).show()
             }
+        }
+        backButton.setOnClickListener {
+            finish()
         }
     }
     // 処理中のダイアログを表示してFirebaseにアカウント作成を指示。

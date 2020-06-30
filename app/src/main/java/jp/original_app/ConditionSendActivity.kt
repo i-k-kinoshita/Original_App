@@ -1,16 +1,15 @@
 package jp.original_app
 
-import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.ArrayAdapter
-import kotlinx.android.synthetic.main.activity_condition_send.*
-import android.support.design.widget.Snackbar
 import android.view.View
 import android.widget.SpinnerAdapter
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.activity_condition_send.*
 import java.util.*
 import java.text.SimpleDateFormat
 
@@ -20,7 +19,6 @@ class ConditionSendActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_condition_send)
 
-
         // 現在時刻の取得
         val cal = Calendar.getInstance()
         val sdf = SimpleDateFormat("yyyy年M月dd日(E)")
@@ -28,32 +26,83 @@ class ConditionSendActivity : AppCompatActivity() {
         val date = sdf.format(cal.time)
         val cntData = sdf2.format(cal.time)
 
-//        val date = "2020年6月1日(月)"
-//        val cntData = "200601"
-//        val date = "2020年6月2日(火)"
-//        val cntData = "200602"
-//        val date = "2020年6月3日(水)"
-//        val cntData = "200603"
-//        val date = "2020年6月4日(木)"
-//        val cntData = "200604"
-//        val date = "2020年6月5日(金)"
-//        val cntData = "200605"
-//        val date = "2020年6月6日(土)"
-//        val cntData = "200606"
-//        val date = "2020年6月7日(日)"
-//        val cntData = "200607"
-//        val date = "2020年6月8日(月)"
-//        val cntData = "200608"
-//        val date = "2020年6月9日(火)"
-//        val cntData = "200609"
-//        val date = "2020年6月10日(水)"
-//        val cntData = "200610"
+
+//        val user = FirebaseAuth.getInstance().currentUser
+//        val databaseReference = FirebaseDatabase.getInstance().reference
+
+//        val random = Random()
+//
+//        for(i in 10 until 25){
+//            var date = ""
+//            val judg = i % 7
+//            if(judg == 0){
+//                date = "2020年6月" + ( i + 1 ) + "日(月)"
+//
+//            }else if(judg == 1){
+//                date = "2020年6月" + ( i + 1 ) + "日(火)"
+//
+//            }else if(judg == 2){
+//                date = "2020年6月" + ( i + 1 ) + "日(水)"
+//
+//            }else if(judg == 3){
+//                date = "2020年6月" + ( i + 1 ) + "日(木)"
+//
+//            }else if(judg == 4){
+//                date = "2020年6月" + ( i + 1 ) + "日(金)"
+//
+//            }else if(judg == 5){
+//                date = "2020年6月" + ( i + 1 ) + "日(土)"
+//
+//            }else if(judg == 6){
+//                date = "2020年6月" + ( i + 1 ) + "日(日)"
+//
+//            }
+//
+//            val randomData = random.nextFloat()
+//            val temperature = 35.8 + randomData*1.8
+//            val temperatureData = temperature.toString().substring(0,4) + "℃"
+//            var condition = "良い"
+//            var remark = ""
+//
+//            val oderCnt = "202006$i"
+//            val cnt = 1/oderCnt.toFloat()
+//
+//            if(temperature in 35.8..36.3){
+//                condition = "普通"
+//            }else if(temperature > 36.3 && temperature <= 36.8){
+//                condition = "良い"
+//            }else{
+//                condition = "悪い"
+//                remark = "花粉症"
+//            }
+//
+//
+//            Log.d("Kotlintest","$date")
+//            Log.d("Kotlintest","$temperatureData")
+//            Log.d("Kotlintest","$condition")
+//            Log.d("Kotlintest","$remark")
+//            Log.d("Kotlintest","$cnt")
+//            Log.d("Kotlintest","---------------------")
+//
+//            val reportReference = databaseReference.child(UsersPATH).child(user!!.uid).child(reportPATH).child(date)
+//
+//            val data = HashMap<String, String>()
+//
+//            data["temperature"] = temperatureData
+//            data["condition"] = condition
+//            data["remark"] = remark
+//            data["orderCnt"] = cnt.toString()
+//
+//            reportReference.setValue(data)
+//
+//        }
 
         day.text = date
 
-        var temperaturelist = listOf("35.5℃以下","35.6℃","35.7℃","35.8℃","35.9℃","36.0℃"
+        var temperaturelist = listOf("35.5℃","35.6℃","35.7℃","35.8℃","35.9℃","36.0℃"
             ,"36.1℃","36.2℃","36.3℃","36.4℃","36.5℃","36.6℃","36.7℃","36.8℃","36.9℃","37.0℃"
-            ,"37.1℃","37.2℃","37.3℃","37.4℃","37.5℃","37.6℃","37.7℃","37.8℃","37.9℃","38.0℃以上")
+            ,"37.1℃","37.2℃","37.3℃","37.4℃","37.5℃","37.6℃","37.7℃","37.8℃","37.9℃","38.0℃"
+            ,"38.1℃","38.2℃","38.3℃","38.4℃","38.5℃","38.6℃","38.7℃","38.8℃","38.9℃","39.0℃")
         var conditionlist = listOf("良い","普通","悪い")
 
         //アダプターを設定

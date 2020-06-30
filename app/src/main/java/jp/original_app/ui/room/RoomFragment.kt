@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import android.support.v4.app.Fragment
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
-import android.support.design.widget.Snackbar
+import android.os.Handler
 import android.support.v7.app.AlertDialog
+import android.util.Log
 import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.widget.ListView
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
@@ -20,7 +22,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import jp.original_app.*
 import kotlinx.android.synthetic.main.activity_main2.*
-import kotlinx.android.synthetic.main.activity_room_list.*
 import kotlinx.android.synthetic.main.fragment_room.*
 
 class RoomFragment : Fragment() {
@@ -31,6 +32,8 @@ class RoomFragment : Fragment() {
     private lateinit var mMutableMap: MutableMap<Int,ArrayList<String>>
 
     private var mCnt = -1
+    private var mHandler = Handler()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,6 +47,9 @@ class RoomFragment : Fragment() {
 
     private val roomEventListener = object : ChildEventListener {
         override fun onChildAdded(dataSnapshot: DataSnapshot, s: String?) {
+            mHandler.post {
+                roomText.visibility = GONE
+            }
             val roomName = dataSnapshot.key ?: ""
             mRoomList.add(roomName)
             mAdapter.notifyDataSetChanged()
@@ -55,13 +61,11 @@ class RoomFragment : Fragment() {
 
                 override fun onChildAdded(dataSnapshot: DataSnapshot, s: String?) {
                     val userID = dataSnapshot.key ?: ""
-
                     if(array.size == 0){
                         mCnt++
                     }
                     array.add(userID)
                     mMutableMap[mCnt] = array
-                    roomText.visibility = GONE
                 }
                 override fun onChildChanged(dataSnapshot: DataSnapshot, s: String?) {
                 }
@@ -82,7 +86,6 @@ class RoomFragment : Fragment() {
         override fun onCancelled(databaseError: DatabaseError) {
         }
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -105,7 +108,6 @@ class RoomFragment : Fragment() {
             val room = mMutableMap[position]?.let { Room(mRoomList[position], it) }
             val action = RoomFragmentDirections.actionNavigationRoomToNavigationListMember(room!!)
             findNavController().navigate(action)
-
         }
         roomListView.setOnItemLongClickListener { parent, view, position, id ->
             val roomUserRef = databaseReference.child(roomPATH).child(mRoomList[position]).child(UsersPATH)
@@ -127,6 +129,8 @@ class RoomFragment : Fragment() {
                 roomReference.addChildEventListener(roomEventListener)
                 mAdapter.setReportArrayList(mRoomList)
                 roomListView.adapter = mAdapter
+
+                roomText.visibility = VISIBLE
                 Toast.makeText(context, roomName + "から退会しました", Toast.LENGTH_SHORT).show()
             }
 

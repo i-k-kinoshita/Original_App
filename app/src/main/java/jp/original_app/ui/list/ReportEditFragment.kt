@@ -19,7 +19,7 @@ import jp.original_app.R
 import jp.original_app.Report
 import jp.original_app.UsersPATH
 import jp.original_app.reportPATH
-import kotlinx.android.synthetic.main.activity_report_edit.*
+import kotlinx.android.synthetic.main.report_edit_fragment.*
 import java.util.HashMap
 
 class ReportEditFragment : Fragment() {
@@ -43,9 +43,10 @@ class ReportEditFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var temperaturelist = listOf("35.5℃以下","35.6℃","35.7℃","35.8℃","35.9℃","36.0℃"
+        var temperaturelist = listOf("35.5℃","35.6℃","35.7℃","35.8℃","35.9℃","36.0℃"
             ,"36.1℃","36.2℃","36.3℃","36.4℃","36.5℃","36.6℃","36.7℃","36.8℃","36.9℃","37.0℃"
-            ,"37.1℃","37.2℃","37.3℃","37.4℃","37.5℃","37.6℃","37.7℃","37.8℃","37.9℃","38.0℃以上")
+            ,"37.1℃","37.2℃","37.3℃","37.4℃","37.5℃","37.6℃","37.7℃","37.8℃","37.9℃","38.0℃"
+            ,"38.1℃","38.2℃","38.3℃","38.4℃","38.5℃","38.6℃","38.7℃","38.8℃","38.9℃","39.0℃")
         var conditionlist = listOf("良い","普通","悪い")
 
         //アダプターを設定

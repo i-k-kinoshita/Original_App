@@ -16,17 +16,17 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="ルーム"
-        android:layout_marginTop="100dp"
-        android:textSize="40dp" />
+        android:text="グループ申請 / 作成"
+        android:layout_marginTop="50dp"
+        android:textSize="25dp" />
 
     <EditText
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:id="@+id/roomName"
-        android:hint="ルーム名"
+        android:hint="グループ名"
         android:inputType="text"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="70dp"
         android:layout_below="@+id/appName"
         android:layout_centerHorizontal="true"/>
 
@@ -40,17 +40,18 @@
         android:layout_centerHorizontal="true"/>
 
     <Button
-        android:layout_width="170dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:text="ログイン"
+        android:text="グループ申請"
+        android:layout_marginTop="50dp"
         android:id="@+id/loginRoom"
         android:layout_below="@+id/passwordText"
         android:layout_centerHorizontal="true"/>
 
     <Button
-        android:layout_width="170dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:text="ルーム作成"
+        android:text="グループ作成"
         android:id="@+id/createRoom"
         android:layout_below="@+id/loginRoom"
         android:layout_centerHorizontal="true"/>

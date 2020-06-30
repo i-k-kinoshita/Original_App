@@ -42,15 +42,15 @@ class ReportAdapter(context: Context) : BaseAdapter() {
         val conditionImage = convertView.findViewById<View>(R.id.reportListCondition) as ImageView
         if(mReportArrayList[position].condition == "良い"){
             conditionImage.setImageResource(R.drawable.good)
-            convertView.setBackgroundColor(Color.rgb(240, 255, 240));
+            convertView.setBackgroundColor(Color.rgb(245, 255, 245));
 
         }else if(mReportArrayList[position].condition == "普通"){
             conditionImage.setImageResource(R.drawable.usual)
-            convertView.setBackgroundColor(Color.rgb(255, 255, 240));
+            convertView.setBackgroundColor(Color.rgb(255, 255, 245));
 
         }else if(mReportArrayList[position].condition == "悪い"){
             conditionImage.setImageResource(R.drawable.bad)
-            convertView.setBackgroundColor(Color.rgb(255, 240, 245));
+            convertView.setBackgroundColor(Color.rgb(255, 250, 255));
 
         }
 
